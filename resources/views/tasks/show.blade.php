@@ -21,8 +21,10 @@
 
                                     <!-- Table Headings -->
                                     <thead>
-                                        <th>Task</th>
-                                        <th>&nbsp;</th>
+                                        <th>Opravilo</th>
+                                        <th>Kratek opis</th>
+                                        <th>Rok</th>
+                                        <th>Urejanje</th>
                                     </thead>
 
                                     <tbody>
@@ -31,23 +33,51 @@
                                                 <td class="table-text">
                                                     <div>{{ $task->name }}</div>
                                                 </td>
+                                                <td class="table-text">
+                                                    <div>{{ $task->short_desc }}</div>
+                                                </td>
+                                                <td class="table-text">
+                                                    <div>{{ $task->deadline }}</div>
+                                                </td>
 
-                                                @if (Auth::user()->privilege == 1)
-                                                    <td>
-                                                        <form action="/task/{{ $task->id }}" method="POST">
-                                                            {{ csrf_field() }}
-                                                            {{ method_field('DELETE') }}
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-list"></i> <span class="caret"></span></button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="/task/{{ $task->id }}/view" class="dropdown-item">Ogled</a></li>
+
+                                                            @if (Auth::user()->privilege == 1)
+                                                                <li><a href="/task/{{ $task->id }}/edit" class="dropdown-item">Posodobi</a></li>
+                                                                <li><form action="/task/{{ $task->id }}" method="POST">
+                                                                    {{ csrf_field() }}
+                                                                    {{ method_field('DELETE') }}
+                                                                    <button class="dropdown-item">Zbriši</button>
+                                                                </form></li>
+                                                            @else
+                                                                <li><a href="/task/{{ $task->id }}/edit" class="dropdown-item">Spremeni status</a></li>
+                                                            @endif
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                                 
-                                                            <button>Zbriši</button>
-                                                        </form>
-                                                    </td>
-                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+
                             </div>
+                        </div>                        
+                    @else
+                        <div class="panel panel-default">
+                            Ni dodanih opravil
                         </div>
+                    @endif
+                    @if (Auth::user()->privilege == 1)
+                        <div class="panel panel-default">
+                            <form action="/task/new" method="GET" class="text-center">                        
+                                <button class="btn btn-primary">Dodaj novo opravilo</button>
+                            </form>
+                        </div>                        
                     @endif
                 </div>
             </div>

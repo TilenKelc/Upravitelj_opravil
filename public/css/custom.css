@@ -2,3 +2,12 @@
     box-sizing: border-box;
     resize: none;
 }
+
+.btn-toolbar {margin-top:10px;}
+
+img {
+  float:left; 
+  margin-right:15px;
+  height: 128px;
+  width: 128px;
+}

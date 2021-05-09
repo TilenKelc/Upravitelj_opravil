@@ -36,7 +36,7 @@
                                                 @if (Auth::user()->privilege == 1)
                                                     <td>
                                                         <form action="/status/{{ $status->id }}/edit" class="text-center">                                                
-                                                            <button>Posodobi</button>
+                                                            <button class="btn btn-primary">Posodobi</button>
                                                         </form>
                                                     </td>
                                                     <td>
@@ -44,7 +44,7 @@
                                                             {{ csrf_field() }}
                                                             {{ method_field('DELETE') }}
                                                 
-                                                            <button>Zbriši</button>
+                                                            <button class="btn btn-primary">Zbriši</button>
                                                         </form>
                                                     </td>
                                                 @endif
@@ -61,7 +61,7 @@
                     @endif
                     <div class="panel panel-default">
                         <form action="/status/new" method="GET" class="text-center">                        
-                            <button>Dodaj nov status</button>
+                            <button class="btn btn-primary">Dodaj nov status</button>
                         </form>
                     </div>
                 </div>

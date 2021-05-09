@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Task;
-use App\Models\User;
+use App\Model\User;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,18 +22,22 @@ use App\Http\Controllers\TaskController;
 
 Auth::routes();
 
-Route::get('/', [TaskController::class, 'show']);
-Route::get('/task_new', [TaskController::class, 'new']);
-Route::post('/task', [TaskController::class, 'store']);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', [TaskController::class, 'show']);
 
+    Route::get('/task', [TaskController::class, 'show']);
+    Route::get('/task/new', [TaskController::class, 'new']);
+    Route::get('/task/{id}/edit', [TaskController::class, 'edit']);
+    Route::post('/task/{id}/update', [TaskController::class, 'update']);
+    Route::post('/task', [TaskController::class, 'store']);
+    Route::delete('/task/{id}', [TaskController::class, 'delete']);
+    Route::get('/task/{id}/view', [TaskController::class, 'view']);
+    
+    Route::get('/status/{id}/edit', [StatusController::class, 'edit']);
+    Route::post('/status/{id}/update', [StatusController::class, 'update']);
+    Route::get('/status', [StatusController::class, 'show']);
+    Route::get('/status/new', [StatusController::class, 'new']);
+    Route::post('/status', [StatusController::class, 'store']);
+    Route::delete('/status/{id}', [StatusController::class, 'delete']);
 
-Route::get('/status/{id}/edit', [StatusController::class, 'edit']);
-Route::post('/status/{id}/update', [StatusController::class, 'update']);
-Route::get('/status', [StatusController::class, 'show']);
-Route::get('/status/new', [StatusController::class, 'new']);
-Route::post('/status', [StatusController::class, 'store']);
-Route::delete('/status/{id}', [StatusController::class, 'delete']);
-
-
-
-
+});

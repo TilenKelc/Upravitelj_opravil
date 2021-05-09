@@ -67,8 +67,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->privilege == 1)
-                                        <a class="dropdown-item" href="task_new">
-                                            Novo opravilo
+                                        <a class="dropdown-item" href="task">
+                                            Opravila
                                         </a>
                                         <a class="dropdown-item" href="status">
                                             Statusi

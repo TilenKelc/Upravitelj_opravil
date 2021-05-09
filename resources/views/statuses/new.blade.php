@@ -23,8 +23,8 @@
 
                         <div class="form-group text-center">
                             <div class="col-sm-offset-3 col-sm">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-plus"></i> Dodaj nov status
+                                <button type="submit" class="btn btn-primary">
+                                    Dodaj nov status
                                 </button>
                             </div>
                         </div>

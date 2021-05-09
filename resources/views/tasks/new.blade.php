@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="task" class="col-sm-3 control-label">Kratek opis</label>
+                            <label for="task" class="col-sm control-label">Kratek opis</label>
 
                             <div class="col-sm">
                                 <input type="text" name="short_desc" id="short-desc" class="form-control" required>
@@ -44,9 +44,7 @@
                                 <select id="user" name="user" class="col-sm form-control" required>
                                     <option value="none" selected disabled>Izberi</option>
                                     @foreach ($users as $user)
-                                        
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
-
                                     @endforeach
                                 </select>
                             </div>
@@ -62,8 +60,8 @@
 
                         <div class="form-group text-center">
                             <div class="col-sm-offset-3 col-sm">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-plus"></i> Dodaj na seznam
+                                <button type="submit" class="btn btn-primary">
+                                    Dodaj na seznam
                                 </button>
                             </div>
                         </div>
