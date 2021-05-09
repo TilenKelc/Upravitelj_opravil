@@ -66,14 +66,21 @@
                                 <label for="task" class="col-sm control-label">Dodeli status</label>
                                 <div class="col-sm" aria-labelledby="navbarDropdown">
                                     <select id="status" name="status" class="col-sm form-control" required>
-                                        <option value="none" disabled>Izberi</option>
-                                        @foreach ($statuses as $status)
-                                            @if ($current_status->id == $status->id)
-                                                <option value="{{ $status->id }}" selected>{{ $status->name }}</option>
-                                            @else
+                                        @if (empty($current_status))
+                                            <option value="none" disabled selected>Izberi</option>
+                                            @foreach ($statuses as $status)
                                                 <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                            @endif
-                                        @endforeach
+                                            @endforeach
+                                        @else
+                                            <option value="none" disabled>Izberi</option>
+                                            @foreach ($statuses as $status)
+                                                @if ($current_status->id == $status->id)
+                                                    <option value="{{ $status->id }}" selected>{{ $status->name }}</option>
+                                                @else
+                                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                             </div>
